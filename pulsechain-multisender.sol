@@ -17,7 +17,7 @@ contract MultiSender {
     address public immutable DTX;
     address public treasury;
 
-    constructor(address _dtx, address _treasury) {
+    constructor(address _dtx, address _buybackContract) {
         DTX = _dtx;
         treasury = _treasury;
     }
@@ -52,8 +52,9 @@ contract MultiSender {
         }
 	}
 
-    function updateTreasury() external {
-        treasury = treasuryAddress();
+    function updateTreasury(address _newTreasury) external {
+    	require(msg.sender == governor(), "decentralized voting only");
+        treasury = _newTreasury;
     }
 
 	function governor() public view returns (address) {
