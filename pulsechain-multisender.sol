@@ -13,13 +13,13 @@ interface IGovernor {
 }
 
 contract MultiSender {
-    uint256 public constant FEE = 1e18;
+    uint256 public constant FEE = 1e15;
     address public immutable DTX;
     address public treasury;
 
     constructor(address _dtx, address _buybackContract) {
         DTX = _dtx;
-        treasury = _treasury;
+        treasury = _buybackContract;
     }
 
     function massNative(address[] calldata _address, uint256[] calldata _amount) external payable {
